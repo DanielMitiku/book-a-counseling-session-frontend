@@ -1,4 +1,5 @@
 import React from 'react';
+import isEmpty from 'lodash/isEmpty';
 
 class Login extends React.Component {
   constructor(props) {
@@ -16,10 +17,10 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    if( this.validateForm() === true ) {
+    if( this.validateForm() ) {
       console.log('form submitted')
       //fire_action
-      //this.setState({ ...this.initialState });
+      this.setState({ ...this.initialState });
     }
   }
 
@@ -39,7 +40,7 @@ class Login extends React.Component {
       errors.password = 'This field is required';
     }
     this.setState({errors});
-    if (email && password) {
+    if (isEmpty(errors)) {
       return true;
     }
     return false;
