@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from './NavBar';
+import NavBar from './navbar/NavBar';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
+import Home from './home/Home';
 import SignUp from './signup/SignUp'
 import Login from './login/Login.js'
-import Error from './Error';
+import Error from './error/Error';
 
 function App() {
   return (
