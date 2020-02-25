@@ -1,5 +1,7 @@
 import React from 'react'
 import isEmpty from 'lodash/isEmpty';
+import { signupUser } from '../../actions/signupAction';
+import { connect } from 'react-redux';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -20,9 +22,10 @@ class Signup extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { signupUser } = this.props;
     if( this.validateForm() ) {
-      //fire_action
-      this.setState({ ...this.initialState });
+      signupUser(this.state);
+      // this.setState({ ...this.initialState });
     }
   }
 
@@ -102,4 +105,4 @@ class Signup extends React.Component {
         
 }
            
-export default Signup;
+export default connect(null, { signupUser })(Signup);
