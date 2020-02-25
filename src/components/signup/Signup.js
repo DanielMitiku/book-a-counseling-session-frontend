@@ -1,7 +1,7 @@
 import React from 'react'
 import isEmpty from 'lodash/isEmpty';
 
-class SignUp extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
@@ -102,4 +102,4 @@ class SignUp extends React.Component {
         
 }
            
-export default SignUp;
+export default Signup;

@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from './navbar/NavBar';
 import { Route, Switch } from 'react-router-dom';
 import Home from './home/Home';
-import SignUp from './signup/SignUp'
+import SignUp from './signup/Signup'
 import Login from './login/Login.js'
 import Error from './error/Error';
 
