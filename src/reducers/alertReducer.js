@@ -1,4 +1,4 @@
-import { ALERT_ERROR, ALERT_SUCCESS } from '../actions/types';
+import { ALERT_ERROR, ALERT_SUCCESS, ALERT_CLEAR } from '../actions/types';
 
 const alertReducer = (state = {}, action) => {
   switch(action.type) {
@@ -14,8 +14,12 @@ const alertReducer = (state = {}, action) => {
         type: 'alert-danger',
         message
       };
+    case ALERT_CLEAR:
+      return {};
     default:
       return state;
   }
 
 }
+
+export default alertReducer;
