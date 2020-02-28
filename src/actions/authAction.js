@@ -1,10 +1,64 @@
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER_ID, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../actions/types';
+import setAuthorizationToken from '../utils/auth_header';
+import { alert_success, alert_error } from './alertAction';
+import axios from 'axios';
+import { config } from '../utils/config';
+import jwtDecode from 'jwt-decode';
 
-const setCurrentUser = (user) => {
+const loginUser = (userData, history) => {
+  return dispatch => {
+    dispatch(loginRequest(userData));
+    return axios.post(`${config.url.BASE_URL}/auth/login`, userData)
+    .then((response) => {
+      const token = response.data.auth_token;
+      localStorage.setItem('jwtToken', token);
+      setAuthorizationToken(token);
+      dispatch(setCurrentUserId(jwtDecode(token).user_id));
+      dispatch(loginSuccess(response));
+      dispatch(alert_success('Login successful!'));
+      history.push('/');
+    })
+    .catch((error) => {
+      dispatch(alert_error(error));
+      dispatch(loginFailure(error));
+    });
+  }
+}
+
+const loginRequest = (user) => {
   return {
-    type: SET_CURRENT_USER,
+    type: LOGIN_REQUEST,
     user
   }
 }
 
-export { setCurrentUser }
+const loginSuccess = (response) => {
+  return {
+    type: LOGIN_SUCCESS,
+    response
+  }
+}
+
+const loginFailure = (error) => {
+  return {
+    type: LOGIN_FAILURE,
+    error
+  }
+}
+
+const setCurrentUserId = (user_id) => {
+  return {
+    type: SET_CURRENT_USER_ID,
+    user_id
+  }
+}
+
+const logout = () => {
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthorizationToken(false);
+    dispatch(setCurrentUserId({}));
+  }
+}
+
+export { setCurrentUserId, loginFailure, loginRequest, loginSuccess, loginUser, logout };
