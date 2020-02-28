@@ -1,17 +1,17 @@
   import { ALERT_ERROR, ALERT_SUCCESS } from './types';
 
 
-  const alert_success = (message_success) => {
+  const alert_success = (payload) => {
     return {
       type: ALERT_SUCCESS,
-      message_success
+      payload
     }
   }
 
-  const alert_error = (message_error) => {
+  const alert_error = (payload) => {
     return {
       type: ALERT_ERROR,
-      message_error
+      payload
     }
   }
 
