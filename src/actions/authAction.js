@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER_ID, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../actions/types';
+import { SET_CURRENT_USER_ID, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../actions/types';
 import setAuthorizationToken from '../utils/auth_header';
 import { alert_success, alert_error } from './alertAction';
 import axios from 'axios';
@@ -13,8 +13,9 @@ const loginUser = (userData, history) => {
       const token = response.data.auth_token;
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
-      dispatch(setCurrentUserId(jwtDecode(token).user_id));
-      dispatch(loginSuccess(response));
+      const user_id = jwtDecode(token).user_id;
+      dispatch(setCurrentUserId(user_id));
+      dispatch(loginSuccess(user_id));
       dispatch(alert_success('Login successful!'));
       history.push('/');
     })
@@ -58,6 +59,13 @@ const logout = () => {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUserId({}));
+    dispatch(logoutSuccess());
+  }
+}
+
+const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
   }
 }
 
