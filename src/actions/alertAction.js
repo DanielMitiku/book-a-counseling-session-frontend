@@ -1,4 +1,4 @@
-  import { ALERT_ERROR, ALERT_SUCCESS } from './types';
+  import { ALERT_ERROR, ALERT_SUCCESS, ALERT_CLEAR } from './types';
 
 
   const alert_success = (payload) => {
@@ -15,4 +15,10 @@
     }
   }
 
-  export { alert_error, alert_success };
+  const alert_clear = () => {
+    return {
+      type: ALERT_CLEAR,
+    }
+  }
+
+  export { alert_error, alert_success, alert_clear };
