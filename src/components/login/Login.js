@@ -1,5 +1,7 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
+import { loginUser } from '../../actions/authAction';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,9 +19,11 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { email, password } = this.state;
+    const { history } = this.props;
+    const { loginUser } = this.props;
     if( this.validateForm() ) {
-      console.log('form submitted')
-      //fire_action
+      loginUser({email, password}, history);
       this.setState({ ...this.initialState });
     }
   }
@@ -72,4 +76,4 @@ class Login extends React.Component {
         
         }
            
-export default Login;
+export default connect(null, { loginUser })(Login);
