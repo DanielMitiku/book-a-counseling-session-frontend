@@ -5,11 +5,13 @@ import Home from './home/Home';
 import SignUp from './signup/Signup'
 import Login from './login/Login.js'
 import Error from './error/Error';
+import Flash from './flash/Flash';
 
 function App() {
   return (
     <div>
       <NavBar />
+      <Flash />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/signup" component={SignUp} />

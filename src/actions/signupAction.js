@@ -21,6 +21,7 @@ const signupUser = (user, history) => {
     .catch((error) => {
       dispatch(alert_error(error));
       dispatch(signupFailure(error));
+      console.log(error)
     });
   }
 }

@@ -53,7 +53,7 @@ class Login extends React.Component {
   render() {
     const { email, password, errors } = this.state;
     return (
-      <div className="col-md-4 mt-4 offset-4">
+      <div className="col-md-4 mt-2 offset-4">
         <h2 className="main">Login</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

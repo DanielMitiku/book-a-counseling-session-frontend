@@ -67,7 +67,7 @@ class Signup extends React.Component {
   render() {
     const { first_name, last_name, email, password, password_confirmation, errors } = this.state;
     return (
-      <div className="col-md-4 mt-4 offset-4">
+      <div className="col-md-4 mt-2 offset-4">
         <h2 className="main">Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
