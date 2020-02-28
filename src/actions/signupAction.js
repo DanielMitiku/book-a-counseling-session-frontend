@@ -2,12 +2,14 @@ import { config } from '../config';
 import axios from 'axios';
 import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from './types';
 
-const signupUser = (user) => {
+const signupUser = (user, history) => {
   return dispatch => {
     dispatch(signupRequest(user));
     return axios.post(`${config.url.BASE_URL}/signup`, user)
     .then((response) => {
       dispatch(signupSuccess(response));
+      //fire flash message
+      history.push('/');
     })
     .catch((error) => {
       dispatch(signupFailure(error));
@@ -36,4 +38,4 @@ const signupFailure = (error) => {
   }
 }
 
-export { signupUser }
+export { signupUser, signupRequest, signupSuccess, signupFailure }

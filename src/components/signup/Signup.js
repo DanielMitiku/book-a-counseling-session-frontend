@@ -7,8 +7,8 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       password_confirmation: '',
@@ -23,9 +23,10 @@ class Signup extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { signupUser } = this.props;
+    const { first_name, last_name, email, password, password_confirmation } = this.state;
     if( this.validateForm() ) {
-      signupUser(this.state);
-      // this.setState({ ...this.initialState });
+      signupUser({ first_name, last_name, email, password, password_confirmation }, this.props.history);
+      this.setState({ ...this.initialState });
     }
   }
 
@@ -36,13 +37,13 @@ class Signup extends React.Component {
   }
 
   validateForm = () => {
-    const { firstName, lastName, email, password, password_confirmation } = this.state;
+    const { first_name, last_name, email, password, password_confirmation } = this.state;
     let errors = {};
-    if (!firstName) {
-      errors.firstName = 'This field is required';
+    if (!first_name) {
+      errors.first_name = 'This field is required';
     }
-    if (!lastName) {
-      errors.lastName = 'This field is required';
+    if (!last_name) {
+      errors.last_name = 'This field is required';
     }
     if (!email) {
       errors.email = 'This field is required';
@@ -64,20 +65,20 @@ class Signup extends React.Component {
   }
 
   render() {
-    const { firstName, lastName, email, password, password_confirmation, errors } = this.state;
+    const { first_name, last_name, email, password, password_confirmation, errors } = this.state;
     return (
       <div className="col-md-4 mt-4 offset-4">
         <h2 className="main">Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" className={`form-control ${errors.firstName ? "is-invalid" : ""}`} id="firstName" name="firstName" value={firstName} onChange={this.handleChange}/>
-              {errors.firstName && <span className={`${errors.firstName ? "invalid-feedback" : ""}`}>{errors.firstName}</span>}
+              <label htmlFor="first_name">First Name</label>
+              <input type="text" className={`form-control ${errors.first_name ? "is-invalid" : ""}`} id="first_name" name="first_name" value={first_name} onChange={this.handleChange}/>
+              {errors.first_name && <span className={`${errors.first_name ? "invalid-feedback" : ""}`}>{errors.first_name}</span>}
           </div>
           <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" className={`form-control ${errors.lastName ? "is-invalid" : ""}`} id="lastName" name="lastName" value={lastName} onChange={this.handleChange}/>
-              {errors.lastName && <span className={`${errors.lastName ? "invalid-feedback" : ""}`}>{errors.lastName}</span>}
+              <label htmlFor="last_name">Last Name</label>
+              <input type="text" className={`form-control ${errors.last_name ? "is-invalid" : ""}`} id="last_name" name="last_name" value={last_name} onChange={this.handleChange}/>
+              {errors.last_name && <span className={`${errors.last_name ? "invalid-feedback" : ""}`}>{errors.last_name}</span>}
           </div>
           <div className="form-group">
             <label htmlFor="email">Email address</label>
