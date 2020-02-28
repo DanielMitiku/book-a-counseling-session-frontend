@@ -1,6 +1,7 @@
-import { config } from '../config';
+import { config } from '../utils/config';
 import axios from 'axios';
 import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from './types';
+import { alert_success, alert_error } from './alertAction';
 
 const signupUser = (user, history) => {
   return dispatch => {
@@ -8,10 +9,11 @@ const signupUser = (user, history) => {
     return axios.post(`${config.url.BASE_URL}/signup`, user)
     .then((response) => {
       dispatch(signupSuccess(response));
-      //fire flash message
+      dispatch(alert_success('Signup successful!'));
       history.push('/');
     })
     .catch((error) => {
+      dispatch(alert_error(error));
       dispatch(signupFailure(error));
     });
   }
