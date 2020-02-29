@@ -18,11 +18,11 @@ const loginUser = (userData) => {
       const user_id = jwtDecode(token).user_id;
       dispatch(setCurrentUserId(user_id));
       dispatch(loginSuccess(user_id));
-      dispatch(alert_success('Login successful!'));
+      dispatch(alert_success('Login Successful!'));
       history.push('/');
     })
     .catch((error) => {
-      dispatch(alert_error(error));
+      dispatch(alert_error("Login Error"));
       dispatch(loginFailure(error));
     });
   }
