@@ -25,7 +25,7 @@ class Signup extends React.Component {
     const { signupUser } = this.props;
     const { first_name, last_name, email, password, password_confirmation } = this.state;
     if( this.validateForm() ) {
-      signupUser({ first_name, last_name, email, password, password_confirmation }, this.props.history);
+      signupUser({ first_name, last_name, email, password, password_confirmation });
       this.setState({ ...this.initialState });
     }
   }

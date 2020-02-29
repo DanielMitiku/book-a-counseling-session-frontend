@@ -20,10 +20,9 @@ class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    const { history } = this.props;
     const { loginUser } = this.props;
     if( this.validateForm() ) {
-      loginUser({email, password}, history);
+      loginUser({email, password});
       this.setState({ ...this.initialState });
     }
   }

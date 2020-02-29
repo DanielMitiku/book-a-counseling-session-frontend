@@ -1,21 +1,13 @@
-import { SET_CURRENT_USER_ID, SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../actions/types';
-import isEmpty from 'lodash/isEmpty';
+import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../actions/types';
 
 const initialState = {
-  isAuthenticated: false,
+  isSignedup: false,
   user: {},
   signingIn: false,
 };
 
 const signupReducer = (state = initialState, action) => {
   switch(action.type) {
-    case SET_CURRENT_USER_ID: {
-      const newState = {
-        isAuthenticated: !isEmpty(action.user_id),
-        user_id: action.user_id,
-      }
-      return { newState, ...state};
-    }
     case SIGNUP_REQUEST: {
       return { 
         signingIn: true,
@@ -23,8 +15,10 @@ const signupReducer = (state = initialState, action) => {
       };
     }
     case SIGNUP_SUCCESS: {
-      return { 
+      return {
+        isSignedup: true, 
         user_id: action.user_id,
+        signingIn: false,
       };
     }
     case SIGNUP_FAILURE: {

@@ -4,8 +4,10 @@ import { alert_success, alert_error } from './alertAction';
 import axios from 'axios';
 import { config } from '../utils/config';
 import jwtDecode from 'jwt-decode';
+import history from "../utils/history";
 
-const loginUser = (userData, history) => {
+
+const loginUser = (userData) => {
   return dispatch => {
     dispatch(loginRequest(userData));
     return axios.post(`${config.url.BASE_URL}/auth/login`, userData)
@@ -60,6 +62,7 @@ const logout = () => {
     setAuthorizationToken(false);
     dispatch(setCurrentUserId({}));
     dispatch(logoutSuccess());
+    history.push('/login');
   }
 }
 

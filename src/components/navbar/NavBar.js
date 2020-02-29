@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction';
 
@@ -27,6 +27,7 @@ const NavBar = (props) => {
         </li>
       </ul>
   );
+
   return (
     <nav className="navbar fixed-top navbar-dark bg-dark">
       <li className="nav-item">
@@ -55,4 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { logout })(NavBar);
+export default connect(mapStateToProps, { logout })(withRouter(NavBar));
