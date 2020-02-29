@@ -5,7 +5,7 @@ import { logout } from '../../actions/authAction';
 
 
 const NavBar = (props) => {
-  const { isAuthenticated, user, loggingIn } = props.auth;
+  const { isAuthenticated } = props.auth;
   const logoutHandler = (event) => {
     event.preventDefault();
     props.logout();
