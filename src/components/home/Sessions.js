@@ -22,7 +22,7 @@ class Sessions extends React.Component {
               <div className="card-body">
                 <h5 className="card-title">{session.name}</h5>
                 <p className="card-text">{session.description}</p>
-                <Link to='/sessions/book' type="button" className="btn btn-info">Book Now</Link>
+                <Link to={`/sessions/${session.id}`} type="button" className="btn btn-info">Book Now</Link>
               </div>
             </div>
           );

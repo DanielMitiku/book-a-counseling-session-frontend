@@ -10,6 +10,7 @@ import Login from './login/Login.js'
 import Error from './error/Error';
 import Flash from './flash/Flash';
 import Sidebar from './sidebar/Sidebar';
+import Book from './home/Book';
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
             <Route path="/" exact component={Home} />
             <Route path="/appointments" component={Appointments} />
             <Route path="/profile" component={Profile} />
+            <Route path="/sessions/:id" component={Book} />
             <Route path="/sessions" component={Sessions} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />

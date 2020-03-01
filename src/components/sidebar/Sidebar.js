@@ -22,7 +22,7 @@ const Sidebar = (props) => {
 
   const userLink = (
       <ul className="nav flex-column">
-        <Link to='/sessions' className={`side-bar-item py-3 px-5 ${currentUrl === '/sessions' ? "side-bar-active" : ""}`}>Book Now</Link>
+        <Link to='/sessions' className={`side-bar-item py-3 px-5 ${currentUrl.includes('/sessions') ? "side-bar-active" : ""}`}>Book Now</Link>
         <Link to='/appointments' className={`side-bar-item py-3 px-5 ${currentUrl === '/appointments' ? "side-bar-active" : ""}`}>Appointments</Link>
         <Link to='/profile' className={`side-bar-item py-3 px-5 ${currentUrl === '/profile' ? "side-bar-active" : ""}`}>Profile</Link>
         <Link to='/logout' onClick={logoutHandler} className={`side-bar-item py-3 px-5 ${currentUrl === '/logout' ? "side-bar-active" : ""}`}>Logout</Link>
