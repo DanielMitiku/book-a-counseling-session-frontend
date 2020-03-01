@@ -33,17 +33,6 @@ const NavBar = (props) => {
       <li className="nav-item">
         <Link to='/' className="navbar-brand">Book a Session</Link>
       </li>
-      <ul className="nav justify-content-center">
-        <li className="nav-item">
-          <Link to='/' className="nav-link active nav-color">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link to='/' className="nav-link nav-color">Link</Link>
-        </li>
-        <li className="nav-item">
-          <Link to='/' className="nav-link nav-color">Link</Link>
-        </li>
-      </ul>
       { isAuthenticated ? logoutLink : loginLink }      
     </nav>
 

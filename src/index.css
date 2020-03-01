@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 55px;
+  padding-top: 65px;
 }
 
 code {
@@ -17,20 +17,12 @@ code {
   text-align: center;
 }
 
-.nav-color {
-  color: grey;
-}
-
-.nav-color:hover {
-  color: white;
-}
-
-.active {
-  color: white;
-}
-
 .row {
   margin: 0;
+}
+
+.nav-color {
+  color: white;
 }
 
 .side-bar {
@@ -39,7 +31,11 @@ code {
   z-index: 1; 
   /* background-color: rgb(212, 214, 192);  */
   overflow-x: hidden; 
-  padding-top: 5%;
+}
+
+.side-bar-body {
+  margin-top: 30px;
+  margin-left: 5px;
 }
 
 .side-bar-item {
