@@ -16,6 +16,7 @@ const loginUser = (userData) => {
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
       const user_id = jwtDecode(token).user_id;
+      // const is_privileged = jwtDecode(token).is_privileged;
       dispatch(setCurrentUserId(user_id));
       dispatch(loginSuccess(user_id));
       dispatch(alert_success('Login Successful!'));

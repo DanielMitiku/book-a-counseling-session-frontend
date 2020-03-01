@@ -23,7 +23,7 @@ const Home = (props) => {
         <div className="card-body">
           <h5 className="card-title">Do you need <span className="peace">Peace</span> in this world of chaos?</h5>
           <p className="card-text">If your answer is YES, then we are here to do that. You can discuss the things
-          that most matter to you with us. We will let you settle, relax and enjoy your the life you live. It's simple, 
+          that most matter to you with us. We will let you settle, relax and enjoy the life you live. It's simple, 
           just book a session with one of our experts in any field you want and we can make all the stress go away. </p>
           { isAuthenticated ? userLink : loginLink }
         </div>
