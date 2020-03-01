@@ -6,6 +6,7 @@ import { logout } from '../../actions/authAction';
 
 const Sidebar = (props) => {
   const { isAuthenticated } = props.auth;
+  
   const logoutHandler = (event) => {
     event.preventDefault();
     props.logout();

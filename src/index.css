@@ -54,3 +54,12 @@ code {
 .main-bar {
   padding-top: 15px;
 }
+
+.peace {
+  color: rgb(65, 72, 167);
+}
+
+.book-button {
+  width: 40%;
+  margin: auto;
+}

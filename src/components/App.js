@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './home/Home';
 import Profile from './home/Profile';
 import Appointments from './home/Appointments';
+import Sessions from './home/Sessions';
 import SignUp from './signup/Signup'
 import Login from './login/Login.js'
 import Error from './error/Error';
@@ -24,6 +25,7 @@ class App extends React.Component {
             <Route path="/" exact component={Home} />
             <Route path="/appointments" component={Appointments} />
             <Route path="/profile" component={Profile} />
+            <Route path="/sessions" component={Sessions} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route component={Error} />
