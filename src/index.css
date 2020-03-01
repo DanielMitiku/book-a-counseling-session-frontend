@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 65px;
+  padding-top: 55px;
 }
 
 code {
@@ -27,4 +27,34 @@ code {
 
 .active {
   color: white;
+}
+
+.row {
+  margin: 0;
+}
+
+.side-bar {
+  height: 100%; 
+  position: fixed;
+  z-index: 1; 
+  /* background-color: rgb(212, 214, 192);  */
+  overflow-x: hidden; 
+  padding-top: 5%;
+}
+
+.side-bar-item {
+  color: black;
+}
+
+.side-bar-item:hover {
+  color: blueviolet;
+  text-decoration: none;
+}
+
+.side-bar-active {
+  background-color: yellowgreen;
+}
+
+.main-bar {
+  padding-top: 15px;
 }
