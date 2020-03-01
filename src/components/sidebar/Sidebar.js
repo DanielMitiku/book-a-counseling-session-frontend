@@ -6,7 +6,8 @@ import { logout } from '../../actions/authAction';
 
 const Sidebar = (props) => {
   const { isAuthenticated } = props.auth;
-  
+  const currentUrl = window.location.pathname;
+
   const logoutHandler = (event) => {
     event.preventDefault();
     props.logout();
@@ -14,16 +15,17 @@ const Sidebar = (props) => {
 
   const loginLink = (
     <ul className="nav flex-column">
-        <Link to='/login' className="side-bar-item py-3 px-5">Login</Link>
-        <Link to='/signup' className="side-bar-item py-3 px-5">Sign Up</Link>
+        <Link to='/login' className={`side-bar-item py-3 px-5 ${currentUrl === '/login' ? "side-bar-active" : ""}`}>Login</Link>
+        <Link to='/signup' className={`side-bar-item py-3 px-5 ${currentUrl === '/signup' ? "side-bar-active" : ""}`}>Sign Up</Link>
     </ul>
   );
 
   const userLink = (
       <ul className="nav flex-column">
-        <Link to='/appointments' className="side-bar-item py-3 px-5">Appointments</Link>
-        <Link to='/profile' className="side-bar-item py-3 px-5">Profile</Link>
-        <Link to='/logout' onClick={logoutHandler} className="side-bar-item py-3 px-5">Logout</Link>
+        <Link to='/sessions' className={`side-bar-item py-3 px-5 ${currentUrl === '/sessions' ? "side-bar-active" : ""}`}>Book Now</Link>
+        <Link to='/appointments' className={`side-bar-item py-3 px-5 ${currentUrl === '/appointments' ? "side-bar-active" : ""}`}>Appointments</Link>
+        <Link to='/profile' className={`side-bar-item py-3 px-5 ${currentUrl === '/profile' ? "side-bar-active" : ""}`}>Profile</Link>
+        <Link to='/logout' onClick={logoutHandler} className={`side-bar-item py-3 px-5 ${currentUrl === '/logout' ? "side-bar-active" : ""}`}>Logout</Link>
       </ul>
   );
 
@@ -31,7 +33,7 @@ const Sidebar = (props) => {
     <div className='side-bar'>
       <div className="side-bar-body text-left">
         <ul className="nav flex-column">
-          <Link to='/' className="side-bar-item py-3 px-5 side-bar-active">Home</Link>
+          <Link to='/' className={`side-bar-item py-3 px-5 ${currentUrl === '/' ? "side-bar-active" : ""}`}>Home</Link>
         </ul>
         { isAuthenticated ? userLink : loginLink }
       </div>    
