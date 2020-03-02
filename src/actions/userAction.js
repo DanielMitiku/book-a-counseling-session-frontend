@@ -1,4 +1,4 @@
-import { GET_SESSIONS_REQUEST, GET_SESSIONS_SUCCESS, GET_SESSIONS_FAILURE } from '../actions/types';
+import { GET_SESSIONS_REQUEST, GET_SESSIONS_SUCCESS, GET_SESSIONS_FAILURE, CREATE_APPOINTMENT_REQUEST, CREATE_APPOINTMENT_SUCCESS, CREATE_APPOINTMENT_FAILURE } from '../actions/types';
 import { alert_success, alert_error } from './alertAction';
 import axios from 'axios';
 import { config } from '../utils/config';
@@ -40,4 +40,40 @@ const getSessionsFailure = (payload) => {
   }
 }
 
-export { getSessionsFailure, getSessionsRequest, getSessionsSuccess, getSessions };
+const createAppointment = (couonseling_id, user) => {
+  return dispatch => {
+    dispatch(createAppointmentRequest());
+    return axios.post(`${config.url.BASE_URL}/users/${user.id}/appointments`, couonseling_id)
+    .then((response) => {
+      const appointment = response.data;
+      dispatch(createAppointmentSuccess(appointment));
+      dispatch(alert_success("Appointment Created"));
+    })
+    .catch((error) => {
+      dispatch(alert_error("Error Creating Appointment"));
+      dispatch(createAppointmentFailure(error));
+    });
+  }
+}
+
+const createAppointmentSuccess = (payload) => {
+  return {
+    type: CREATE_APPOINTMENT_SUCCESS,
+    payload,
+  }
+}
+
+const createAppointmentFailure = (payload) => {
+  return {
+    type: CREATE_APPOINTMENT_FAILURE,
+    payload,
+  }
+}
+
+const createAppointmentRequest = () => {
+  return {
+    type: CREATE_APPOINTMENT_SUCCESS,
+  }
+}
+
+export { getSessionsFailure, getSessionsRequest, getSessionsSuccess, getSessions, createAppointment, createAppointmentFailure, createAppointmentRequest, createAppointmentSuccess };
