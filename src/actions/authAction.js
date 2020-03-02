@@ -36,10 +36,10 @@ const loginRequest = (user) => {
   }
 }
 
-const loginSuccess = (response) => {
+const loginSuccess = (user_id) => {
   return {
     type: LOGIN_SUCCESS,
-    response
+    user_id
   }
 }
 

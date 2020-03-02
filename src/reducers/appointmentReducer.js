@@ -2,7 +2,7 @@ import { CREATE_APPOINTMENT_REQUEST, CREATE_APPOINTMENT_SUCCESS, CREATE_APPOINTM
 
 const initialState = {
   requesting: false,
-  appointments: [],
+  appointment: {},
 }
 
 const appointmentReducer = (state = initialState, action) => {
@@ -10,13 +10,12 @@ const appointmentReducer = (state = initialState, action) => {
     case CREATE_APPOINTMENT_REQUEST: {
       return { 
         requesting: true,
-        appointments: [...state.appointments],
       };
     }
     case CREATE_APPOINTMENT_SUCCESS: {
       return {
         requesting: false,
-        appointments: [...action.payload]
+        appointment: action.payload
       };
     }
     case CREATE_APPOINTMENT_FAILURE: {

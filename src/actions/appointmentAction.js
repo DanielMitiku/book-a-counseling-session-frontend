@@ -5,14 +5,15 @@ import { config } from '../utils/config';
 import history from "../utils/history";
 
 
-const createAppointment = (appointmentData, user) => {
+const createAppointment = (appointmentData, user_id) => {
   return dispatch => {
     dispatch(createAppointmentRequest());
-    return axios.post(`${config.url.BASE_URL}/users/${user.id}/appointments`, appointmentData)
+    return axios.post(`${config.url.BASE_URL}/users/${user_id}/appointments`, appointmentData)
     .then((response) => {
-      const appointment = response.data;
+      const appointment = response.data.appointment;
       dispatch(createAppointmentSuccess(appointment));
       dispatch(alert_success("Appointment Created"));
+      history.push('/');
     })
     .catch((error) => {
       dispatch(alert_error("Error Creating Appointment"));
