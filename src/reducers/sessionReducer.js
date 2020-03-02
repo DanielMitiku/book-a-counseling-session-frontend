@@ -1,11 +1,11 @@
-import { GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST, CREATE_APPOINTMENT_REQUEST, CREATE_APPOINTMENT_SUCCESS, CREATE_APPOINTMENT_FAILURE } from '../actions/types';
+import { GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
 
 const initialState = {
   requesting: false,
   sessions: [],
 }
 
-const userReducer = (state = initialState, action) => {
+const sessionReducer = (state = initialState, action) => {
   switch(action.type) {
     case GET_SESSIONS_REQUEST: {
       return { 
@@ -27,4 +27,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default sessionReducer;

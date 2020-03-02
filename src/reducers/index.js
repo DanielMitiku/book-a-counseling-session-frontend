@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import alertReducer from './alertReducer';
 import signupReducer from './signupReducer';
-import userReducer from './userReducer';
+import sessionReducer from './sessionReducer';
+import appointmentReducer from './appointmentReducer';
 
-export default combineReducers({auth: authReducer, alert: alertReducer, signup: signupReducer, user: userReducer});
+export default combineReducers({auth: authReducer, alert: alertReducer, signup: signupReducer, session: sessionReducer, appointment: appointmentReducer});
