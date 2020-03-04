@@ -9,7 +9,7 @@ import history from "../utils/history";
 
 const loginUser = (userData) => {
   return dispatch => {
-    dispatch(loginRequest(userData));
+    dispatch(loginRequest());
     return axios.post(`${config.url.BASE_URL}/auth/login`, userData)
     .then((response) => {
       const token = response.data.auth_token;
@@ -29,10 +29,9 @@ const loginUser = (userData) => {
   }
 }
 
-const loginRequest = (user) => {
+const loginRequest = () => {
   return {
     type: LOGIN_REQUEST,
-    user
   }
 }
 
