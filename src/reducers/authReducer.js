@@ -11,7 +11,7 @@ const authReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_CURRENT_USER_ID: {
       return { 
-        isAuthenticated: !isEmpty(action.user_id),
+        isAuthenticated: !isEmpty({user_id: action.user_id}),
         user_id: action.user_id,
       };
     }
@@ -25,11 +25,13 @@ const authReducer = (state = initialState, action) => {
       return { 
         isAuthenticated: true,
         user_id: action.user_id,
+        loggingIn: false,
       };
     }
     case LOGIN_FAILURE: {
       return {
         isAuthenticated: false,
+        loggingIn: false,
       };
     }
     case LOGOUT_SUCCESS: {
