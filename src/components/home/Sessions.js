@@ -11,9 +11,15 @@ class Sessions extends React.Component {
   }
   render() {
     const { session } = this.props;
+    const loading = (<div class="d-flex justify-content-center">
+                      <div className="spinner-border text-primary" role="status">
+                       <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>);
     return (
       <div className='main-bar bar'>
         <h3 className='text-center'>Currently Available Sessions</h3>
+        { session.requesting && loading}
         <div className='row'>
         { session.sessions && session.sessions.map(s => {
           return (

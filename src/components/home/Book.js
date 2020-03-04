@@ -53,9 +53,16 @@ class Book extends React.Component {
       return session.id === id;
     })
     const { datetime, errors } = this.state;
+    const { requesting } = this.props.appointment;
+    const loading = (<div class="d-flex justify-content-center">
+                      <div className="spinner-border text-primary" role="status">
+                       <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>);
     return (
       <div className='main main-bar bar'>
         <h3> Please choose date and time </h3>
+        { requesting && loading }
         <div key={session.id} className="card mx-auto col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
           <img className="card-img-top" src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="Counseling Session" />
           <div className="card-body">
@@ -83,6 +90,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     session: state.session,
+    appointment: state.appointment,
   }
 }
 

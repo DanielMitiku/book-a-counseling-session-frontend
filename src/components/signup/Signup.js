@@ -65,10 +65,17 @@ class Signup extends React.Component {
   }
 
   render() {
+    const { signingIn } = this.props.signup;
+    const loading = (<div class="d-flex justify-content-center">
+                      <div className="spinner-border text-primary" role="status">
+                       <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>);
     const { first_name, last_name, email, password, password_confirmation, errors } = this.state;
     return (
       <div className="col-md-4 mt-2 offset-4">
         <h2 className="main">Sign Up</h2>
+        { signingIn && loading }
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
               <label htmlFor="first_name">First Name</label>
@@ -105,5 +112,11 @@ class Signup extends React.Component {
   }
         
 }
+
+const mapStateToProps = (state) => {
+  return {
+    signup: state.signup,
+  }
+}
            
-export default connect(null, { signupUser })(Signup);
+export default connect(mapStateToProps, { signupUser })(Signup);
