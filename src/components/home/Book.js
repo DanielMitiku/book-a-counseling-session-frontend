@@ -66,6 +66,7 @@ class Book extends React.Component {
             <div className="form-group">
               <label htmlFor="Appointment Date">Appointment Date and Time</label>
               <input type="datetime-local" className={`form-control ${errors.datetime ? "is-invalid" : ""}`} id="datetime" name="datetime" value={datetime} onChange={this.handleChange} />
+              <small id="datetimeHelp" className="form-text text-muted">The time you enter should be in UTC+0 format.</small>
               {errors.datetime && <span className={`${errors.datetime ? "invalid-feedback" : ""}`}>{errors.datetime}</span>}
             </div>
             <div className="main">
