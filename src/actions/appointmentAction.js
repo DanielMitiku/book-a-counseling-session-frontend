@@ -1,4 +1,4 @@
-import { GET_APPOINTMENTS_FAILURE, GET_APPOINTMENTS_SUCCESS, GET_APPOINTMENTS_REQUEST, CREATE_APPOINTMENT_REQUEST, CREATE_APPOINTMENT_SUCCESS, CREATE_APPOINTMENT_FAILURE } from './types';
+import { DELETE_APPOINTMENT_FAILURE, DELETE_APPOINTMENT_SUCCESS, DELETE_APPOINTMENT_REQUEST, GET_APPOINTMENTS_FAILURE, GET_APPOINTMENTS_SUCCESS, GET_APPOINTMENTS_REQUEST, CREATE_APPOINTMENT_REQUEST, CREATE_APPOINTMENT_SUCCESS, CREATE_APPOINTMENT_FAILURE } from './types';
 import { alert_success, alert_error } from './alertAction';
 import axios from 'axios';
 import { config } from '../utils/config';
@@ -45,10 +45,9 @@ const createAppointmentRequest = () => {
 const getAppointments = ( user_id ) => {
   return dispatch => {
     dispatch(getAppointmentsRequest());
-    return axios.get(`${config.url.BASE_URL}/users/${user_id}/appointments`)
+    return axios.get(`${config.url.BASE_URL}/users/${user_id}`)
     .then((response) => {
-      console.log(response);
-      const appointments = response.data;
+      const appointments = response.data.user_appointments;
       dispatch(getAppointmentsSuccess(appointments));
     })
     .catch((error) => {
@@ -78,4 +77,39 @@ const getAppointmentsRequest = () => {
   }
 }
 
-export { getAppointments, getAppointmentsFailure, getAppointmentsRequest, getAppointmentsSuccess, createAppointment, createAppointmentFailure, createAppointmentRequest, createAppointmentSuccess };
+const deleteAppointment = (appointment_id, user_id) => {
+  return dispatch => {
+    dispatch(deleteAppointmentRequest());
+    return axios.delete(`${config.url.BASE_URL}/users/${user_id}/appointments/${appointment_id}`)
+    .then(() => {
+      dispatch(deleteAppointmentSuccess(appointment_id));
+      dispatch(alert_success('Appointment Removed'));
+      dispatch(getAppointments(user_id));
+    })
+    .catch(() => {
+      dispatch(alert_error("Error Deleting Appointment"));
+      dispatch(deleteAppointmentFailure());
+    });
+  }
+}
+
+const deleteAppointmentRequest = () => {
+  return {
+    type: DELETE_APPOINTMENT_REQUEST,
+  }
+}
+
+const deleteAppointmentSuccess = (payload) => {
+  return {
+    type: DELETE_APPOINTMENT_SUCCESS,
+    payload,
+  }
+}
+
+const deleteAppointmentFailure = () => {
+  return {
+    type: DELETE_APPOINTMENT_FAILURE,
+  }
+}
+
+export { deleteAppointment, getAppointments, getAppointmentsFailure, getAppointmentsRequest, getAppointmentsSuccess, createAppointment, createAppointmentFailure, createAppointmentRequest, createAppointmentSuccess };
