@@ -6,7 +6,7 @@ import './sidebar.css';
 
 
 const Sidebar = (props) => {
-  const { isAuthenticated } = props.auth;
+  const { isAuthenticated, is_privileged } = props.auth;
   const currentUrl = window.location.pathname;
 
   const logoutHandler = (event) => {
@@ -30,12 +30,20 @@ const Sidebar = (props) => {
       </ul>
   );
 
+  const adminLink = (
+    <ul className="nav flex-column">
+        <Link to='/users' className={`side-bar-item py-3 px-5 ${currentUrl === '/users' ? "side-bar-active" : ""}`}>Users</Link>
+        <Link to='/counselings' className={`side-bar-item py-3 px-5 ${currentUrl === '/counselings' ? "side-bar-active" : ""}`}>Counselings</Link>
+    </ul>
+  );
+
   return (
     <div className='side-bar'>
       <div className="side-bar-body text-left">
         <ul className="nav flex-column">
           <Link to='/' className={`side-bar-item py-3 px-5 ${currentUrl === '/' ? "side-bar-active" : ""}`}>Home</Link>
         </ul>
+        { is_privileged ? adminLink : '' }
         { isAuthenticated ? userLink : loginLink }
       </div>    
     </div>

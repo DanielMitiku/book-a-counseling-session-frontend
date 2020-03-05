@@ -5,20 +5,23 @@ const initialState = {
   isAuthenticated: false,
   user_id: '',
   loggingIn: false,
+  is_privileged: false,
 };
 
 const authReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_CURRENT_USER_ID: {
-      return { 
+      return {
+        ...state, 
         isAuthenticated: !isEmpty({user_id: action.user_id}),
         user_id: action.user_id,
+        loggingIn: false,
       };
     }
     case LOGIN_REQUEST: {
-      return { 
+      return {
+        ...state, 
         loggingIn: true,
-        user_id: action.user_id,
       };
     }
     case LOGIN_SUCCESS: {
@@ -26,6 +29,7 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user_id: action.user_id,
         loggingIn: false,
+        is_privileged: action.is_privileged,
       };
     }
     case LOGIN_FAILURE: {
