@@ -1,4 +1,4 @@
-import { GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
+import { CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DELETE_SESSION_REQUEST, DELETE_SESSION_SUCCESS, DELETE_SESSION_FAILURE, GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
 
 const initialState = {
   requesting: false,
@@ -20,7 +20,46 @@ const sessionReducer = (state = initialState, action) => {
       };
     }
     case GET_SESSIONS_FAILURE: {
-      return { };
+      return {
+        ...state, 
+        requesting: false,
+      };
+    }
+    case CREATE_SESSION_REQUEST: {
+      return { 
+        ...state,
+        requesting: true,
+      };
+    }
+    case CREATE_SESSION_SUCCESS: {
+      return {
+        ...state,
+        requesting: false,
+      };
+    }
+    case CREATE_SESSION_FAILURE: {
+      return { 
+        ...state,
+        requesting: false,
+      };
+    }
+    case DELETE_SESSION_REQUEST: {
+      return { 
+        ...state,
+        requesting: true,
+      };
+    }
+    case DELETE_SESSION_SUCCESS: {
+      return {
+        ...state,
+        requesting: false,
+      };
+    }
+    case DELETE_SESSION_FAILURE: {
+      return { 
+        ...state,
+        requesting: false,
+      };
     }
     default:
       return state;
