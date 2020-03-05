@@ -63,3 +63,9 @@ code {
   width: 40%;
   margin: auto;
 }
+
+.create-session-form {
+  border: 1px lightgray solid;
+  border-radius: 2%;
+  padding: 10px;
+}
