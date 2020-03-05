@@ -17,11 +17,12 @@ const initialState = {
   if (localStorage.jwtToken) {
     store.dispatch(loginRequest());
     const user_id = jwtDecode(localStorage.jwtToken).user_id;
+    const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
     setAuthorizationToken(localStorage.jwtToken);
     axios.get(`${config.url.BASE_URL}/users/${user_id}`)
     .then(() => {
       store.dispatch(setCurrentUserId(user_id));
-      store.dispatch(loginSuccess(user_id));
+      store.dispatch(loginSuccess(user_id, is_privileged));
     })
     .catch((error) => {
       store.dispatch(loginFailure(error));
