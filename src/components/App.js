@@ -11,6 +11,8 @@ import Error from './error/Error';
 import Flash from './flash/Flash';
 import Sidebar from './sidebar/Sidebar';
 import Book from './home/Book';
+import Counselings from './home/Counselings';
+import Users from './home/Users';
 
 class App extends React.Component {
   render() {
@@ -30,6 +32,8 @@ class App extends React.Component {
             <Route path="/sessions" component={Sessions} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
+            <Route path="/counselings" component={Counselings} />
+            <Route path="/users" component={Users} />
             <Route component={Error} />
           </Switch>
         </div>
