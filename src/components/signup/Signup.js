@@ -104,7 +104,7 @@ class Signup extends React.Component {
             {errors.password_confirmation && <span className={`${errors.password_confirmation ? "invalid-feedback" : ""}`}>{errors.password_confirmation}</span>}
           </div>
           <div className="main">
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className={`btn btn-primary ${signingIn ? "disabled" : ""}`}>Submit</button>
           </div>
         </form>
       </div>
