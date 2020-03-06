@@ -1,8 +1,9 @@
-import { CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DELETE_SESSION_REQUEST, DELETE_SESSION_SUCCESS, DELETE_SESSION_FAILURE, GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
+import { GET_SESSION_REQUEST, GET_SESSION_SUCCESS, GET_SESSION_FAILURE, CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DELETE_SESSION_REQUEST, DELETE_SESSION_SUCCESS, DELETE_SESSION_FAILURE, GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
 
 const initialState = {
   requesting: false,
   sessions: [],
+  session: {},
 }
 
 const sessionReducer = (state = initialState, action) => {
@@ -20,6 +21,26 @@ const sessionReducer = (state = initialState, action) => {
       };
     }
     case GET_SESSIONS_FAILURE: {
+      return {
+        ...state, 
+        requesting: false,
+      };
+    }
+    case GET_SESSION_REQUEST: {
+      return {
+        ...state, 
+        requesting: true,
+        session: {},
+      };
+    }
+    case GET_SESSION_SUCCESS: {
+      return {
+        ...state,
+        requesting: false,
+        session: action.payload
+      };
+    }
+    case GET_SESSION_FAILURE: {
       return {
         ...state, 
         requesting: false,
