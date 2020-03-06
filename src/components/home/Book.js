@@ -1,5 +1,6 @@
 import React from 'react';
 import { createAppointment } from '../../actions/appointmentAction';
+import { getSession } from '../../actions/sessionAction';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 
@@ -15,6 +16,12 @@ class Book extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateForm = this.validateForm.bind(this);
+  }
+
+  componentDidMount() {
+    const { getSession } = this.props;
+    const { id } = this.props.match.params;
+    getSession(id);
   }
 
   handleSubmit = event => {
@@ -47,13 +54,10 @@ class Book extends React.Component {
   }
 
   render() {
-    const { id } = this.props.match.params;
-    const { sessions } = this.props.session;
-    const session = sessions.filter((session) => {
-      return session.id === id;
-    })
+    console.log(this.props)
+    const { session } = this.props;
     const { datetime, errors } = this.state;
-    const { requesting } = this.props.appointment;
+    const { requesting } = this.props.session;
     const loading = (<div className="d-flex justify-content-center">
                       <div className="spinner-border text-primary" role="status">
                        <span className="sr-only">Loading...</span>
@@ -63,11 +67,11 @@ class Book extends React.Component {
       <div className='main main-bar bar'>
         <h3> Please choose date and time </h3>
         { requesting && loading }
-        <div key={session.id} className="card mx-auto col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-          <img className="card-img-top" src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="Counseling Session" />
+        { session.session && <div className="card mx-auto col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
+          <img className="card-img-top" height="300" src={session.session.image_url} alt="Counseling Session" />
           <div className="card-body">
-            <h5 className="card-title">{session.name}</h5>
-            <p className="card-text">{session.description}</p>
+            <h5 className="card-title">{session.session.name}</h5>
+            <p className="card-text">{session.session.description}</p>
           </div>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -80,7 +84,7 @@ class Book extends React.Component {
               <button type="submit" className="btn btn-primary">Submit</button>
             </div>
         </form>
-        </div>
+        </div>}
       </div>
     );
   }
@@ -94,4 +98,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { createAppointment})(Book);
+export default connect(mapStateToProps, { createAppointment, getSession })(Book);

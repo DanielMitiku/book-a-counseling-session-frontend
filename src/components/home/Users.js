@@ -13,11 +13,13 @@ class Users extends React.Component {
   }
 
   componentWillMount() {
-    const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
-    const { alert_error } = this.props;
-    if(!is_privileged) {
-      alert_error('Not Authorized')
-      history.push('/');
+    if (localStorage.jwtToken) {
+      const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
+      const { alert_error } = this.props;
+      if(!is_privileged) {
+        alert_error('Not Authorized')
+        history.push('/');
+      }
     }
   }
 

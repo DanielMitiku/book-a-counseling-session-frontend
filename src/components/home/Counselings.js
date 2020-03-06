@@ -12,6 +12,7 @@ class Counselings extends React.Component {
     this.initialState = {
       name: '',
       description: '',
+      image_url: '',
       buttonClicked: false,
       errors: {},
     };
@@ -24,11 +25,13 @@ class Counselings extends React.Component {
   }
 
   componentWillMount() {
-    const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
-    const { alert_error } = this.props;
-    if(!is_privileged) {
-      alert_error('Not Authorized')
-      history.push('/');
+    if(localStorage.jwtToken){
+      const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
+      const { alert_error } = this.props;
+      if(!is_privileged) {
+        alert_error('Not Authorized')
+        history.push('/');
+      }
     }
   }
 
@@ -41,7 +44,7 @@ class Counselings extends React.Component {
     event.preventDefault();
     const { createSession } = this.props;
     if(this.validateForm()) {
-      createSession({name: this.state.name, description: this.state.description});
+      createSession({name: this.state.name, description: this.state.description, image_url: this.state.image_url,});
       this.buttonClickedHandler();
       this.setState({...this.initialState});
     }
@@ -54,13 +57,16 @@ class Counselings extends React.Component {
   }
 
   validateForm = () => {
-    const { name, description } = this.state;
+    const { name, description, image_url } = this.state;
     let errors = {};
     if (!name) {
       errors.name = 'This field is required';
     }
     if (!description) {
       errors.description = 'This field is required';
+    }
+    if (!image_url) {
+      errors.image_url = 'This field is required';
     }
     this.setState({errors});
     if (isEmpty(errors)) {
@@ -81,7 +87,7 @@ class Counselings extends React.Component {
 
   render() {
     const { session } = this.props;
-    const { name, description, buttonClicked, errors } = this.state;
+    const { name, description, image_url, buttonClicked, errors } = this.state;
     const loading = (<div className="d-flex justify-content-center">
                       <div className="spinner-border text-primary" role="status">
                        <span className="sr-only">Loading...</span>
@@ -100,8 +106,14 @@ class Counselings extends React.Component {
           <textarea className={`form-control ${errors.description ? "is-invalid" : ""}`} id="description" name="description" value={description} onChange={this.handleChange} rows="3"></textarea>
           {errors.description && <span className={`${errors.description ? "invalid-feedback" : ""}`}>{errors.description}</span>}
         </div>
+        <div className="form-group">
+          <label htmlFor="Session Image URL">Session Image URL</label>
+          <input type="text" className={`form-control ${errors.image_url ? "is-invalid" : ""}`} id="image_url" name="image_url" value={image_url} onChange={this.handleChange} />
+          {errors.image_url && <span className={`${errors.image_url ? "invalid-feedback" : ""}`}>{errors.image_url}</span>}
+        </div>
+        {image_url && <div><p>Image Preview</p><img className="mb-2 mx-2" width="200" src={image_url} alt="Counseling Session Preview" /></div> }
         <div className="main">
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary my-2">Submit</button>
         </div>
       </form>
       </div>
@@ -116,7 +128,7 @@ class Counselings extends React.Component {
         { session.sessions && session.sessions.map(s => {
           return (
             <div key={s.id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-              <img className="card-img-top" src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="Counseling Session" />
+              <img className="card-img-top" height="300" src={s.image_url} alt="Counseling Session" />
               <div className="card-body">
                 <h5 className="card-title">{s.name}</h5>
                 <p className="card-text">{s.description}</p>

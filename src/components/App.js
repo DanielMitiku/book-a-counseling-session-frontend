@@ -13,6 +13,7 @@ import Sidebar from './sidebar/Sidebar';
 import Book from './home/Book';
 import Counselings from './home/Counselings';
 import Users from './home/Users';
+import CheckAuth from '../utils/check_auth';
 
 class App extends React.Component {
   render() {
@@ -26,14 +27,14 @@ class App extends React.Component {
           <Flash />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/appointments" component={Appointments} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/sessions/:id" component={Book} />
-            <Route path="/sessions" component={Sessions} />
+            <Route path="/appointments" component={CheckAuth(Appointments)} />
+            <Route path="/profile" component={CheckAuth(Profile)} />
+            <Route path="/sessions/:id" component={CheckAuth(Book)} />
+            <Route path="/sessions" component={CheckAuth(Sessions)} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
-            <Route path="/counselings" component={Counselings} />
-            <Route path="/users" component={Users} />
+            <Route path="/counselings" component={CheckAuth(Counselings)} />
+            <Route path="/users" component={CheckAuth(Users)} />
             <Route component={Error} />
           </Switch>
         </div>

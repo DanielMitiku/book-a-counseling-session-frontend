@@ -24,7 +24,7 @@ class Sessions extends React.Component {
         { session.sessions && session.sessions.map(s => {
           return (
             <div key={s.id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-              <img className="card-img-top" src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="Counseling Session" />
+              <img className="card-img-top" height="300" src={s.image_url} alt="Counseling Session" />
               <div className="card-body">
                 <h5 className="card-title">{s.name}</h5>
                 <p className="card-text">{s.description}</p>
