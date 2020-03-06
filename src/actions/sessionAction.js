@@ -1,4 +1,4 @@
-import { DELETE_SESSION_FAILURE, DELETE_SESSION_SUCCESS, DELETE_SESSION_REQUEST, CREATE_SESSION_FAILURE, CREATE_SESSION_SUCCESS, CREATE_SESSION_REQUEST, GET_SESSIONS_REQUEST, GET_SESSIONS_SUCCESS, GET_SESSIONS_FAILURE } from './types';
+import { GET_SESSION_SUCCESS, GET_SESSION_FAILURE, GET_SESSION_REQUEST, DELETE_SESSION_FAILURE, DELETE_SESSION_SUCCESS, DELETE_SESSION_REQUEST, CREATE_SESSION_FAILURE, CREATE_SESSION_SUCCESS, CREATE_SESSION_REQUEST, GET_SESSIONS_REQUEST, GET_SESSIONS_SUCCESS, GET_SESSIONS_FAILURE } from './types';
 import { alert_success, alert_error } from './alertAction';
 import axios from 'axios';
 import { config } from '../utils/config';
@@ -39,6 +39,41 @@ const getSessionsFailure = (payload) => {
   }
 }
 
+const getSession = (session_id) => {
+  return dispatch => {
+    dispatch(getSessionRequest());
+    return axios.get(`${config.url.BASE_URL}/counselings/${session_id}`)
+    .then((response) => {
+      const counseling = response.data;
+      dispatch(getSessionSuccess(counseling));
+    })
+    .catch((error) => {
+      dispatch(alert_error("Error Getting Session"));
+      dispatch(getSessionFailure(error));
+    });
+  }
+}
+
+const getSessionRequest = () => {
+  return {
+    type: GET_SESSION_REQUEST,
+  }
+}
+
+const getSessionSuccess = (payload) => {
+  return {
+    type: GET_SESSION_SUCCESS,
+    payload
+  }
+}
+
+const getSessionFailure = (payload) => {
+  return {
+    type: GET_SESSION_FAILURE,
+    payload
+  }
+}
+
 const createSession = (counselingData) => {
   return dispatch => {
     dispatch(createSessionRequest());
@@ -46,6 +81,7 @@ const createSession = (counselingData) => {
     .then((response) => {
       const counseling = response.data;
       dispatch(getSessions());
+      dispatch(alert_success('Session Created'));
       dispatch(createSessionSuccess(counseling));
     })
     .catch((error) => {
@@ -110,4 +146,4 @@ const deleteSessionFailure = () => {
   }
 }
 
-export { createSession, createSessionFailure, createSessionRequest, createSessionSuccess, deleteSession, deleteSessionFailure, deleteSessionRequest, deleteSessionSuccess, getSessionsFailure, getSessionsRequest, getSessionsSuccess, getSessions };
+export { getSession, getSessionFailure, getSessionRequest, getSessionSuccess, createSession, createSessionFailure, createSessionRequest, createSessionSuccess, deleteSession, deleteSessionFailure, deleteSessionRequest, deleteSessionSuccess, getSessionsFailure, getSessionsRequest, getSessionsSuccess, getSessions };
