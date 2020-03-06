@@ -65,7 +65,7 @@ code {
 }
 
 .create-session-form {
-  border: 1px lightgray solid;
+  border: 5px rgb(133, 124, 133) solid;
   border-radius: 2%;
   padding: 10px;
 }
