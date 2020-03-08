@@ -1,12 +1,13 @@
 import React from 'react';
-import NavBar from './navbar/NavBar';
 import { Route, Switch } from 'react-router-dom';
+import NavBar from './navbar/NavBar';
 import Home from './home/Home';
 import Profile from './home/Profile';
 import Appointments from './home/Appointments';
+import AllAppointments from './home/AllAppointments';
 import Sessions from './home/Sessions';
-import SignUp from './signup/Signup'
-import Login from './login/Login.js'
+import SignUp from './signup/Signup';
+import Login from './login/Login.js';
 import Error from './error/Error';
 import Flash from './flash/Flash';
 import Sidebar from './sidebar/Sidebar';
@@ -18,16 +19,17 @@ import CheckAuth from '../utils/check_auth';
 class App extends React.Component {
   render() {
     return (
-      <div className='row'>
+      <div className="row">
         <NavBar />
-        <div className='col-md-2'>
+        <div className="col-md-2">
           <Sidebar />
         </div>
-        <div className='col-md-9 offset-2 mt-3'>
+        <div className="col-md-9 offset-2 mt-3">
           <Flash />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/appointments" component={CheckAuth(Appointments)} />
+            <Route path="/all_appointments" component={CheckAuth(AllAppointments)} />
             <Route path="/profile" component={CheckAuth(Profile)} />
             <Route path="/sessions/:id" component={CheckAuth(Book)} />
             <Route path="/sessions" component={CheckAuth(Sessions)} />

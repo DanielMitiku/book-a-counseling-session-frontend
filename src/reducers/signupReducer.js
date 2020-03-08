@@ -7,16 +7,16 @@ const initialState = {
 };
 
 const signupReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SIGNUP_REQUEST: {
-      return { 
+      return {
         signingIn: true,
         user_id: action.user_id,
       };
     }
     case SIGNUP_SUCCESS: {
       return {
-        isSignedup: true, 
+        isSignedup: true,
         user_id: action.user_id,
         signingIn: false,
       };

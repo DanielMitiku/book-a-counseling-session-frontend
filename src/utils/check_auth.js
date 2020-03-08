@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { alert_error } from '../actions/alertAction';
 import history from './history';
 
-export default function(Component) {
+export default function (Component) {
   class CheckAuth extends React.Component {
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       if (!this.props.isAuthenticated && !localStorage.jwtToken) {
         this.props.alert_error('Please login to access the site');
         history.push('/login');
@@ -20,11 +20,9 @@ export default function(Component) {
   }
 
 
-  const mapStateToProps = (state) => {
-    return {
-      isAuthenticated: state.auth.isAuthenticated
-    };
-  }
+  const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+  });
 
   return connect(mapStateToProps, { alert_error })(CheckAuth);
 }

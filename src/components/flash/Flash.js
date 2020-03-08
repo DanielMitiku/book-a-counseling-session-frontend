@@ -15,23 +15,21 @@ class Flash extends React.Component {
 
   render() {
     const { alert } = this.props;
-    if(alert.type) {
+    if (alert.type) {
+      setTimeout(this.onClick, 2000);
       return (
         <div className={`col-md-4 text-center offset-4 alert ${alert.type}`}>
           {alert.message}
           <button onClick={this.onClick} className="close"><span>&times;</span></button>
         </div>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    alert: state.alert
-  }
-}
+const mapStateToProps = state => ({
+  alert: state.alert,
+});
 
 export default connect(mapStateToProps, { alert_clear })(Flash);

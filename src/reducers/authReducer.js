@@ -1,5 +1,7 @@
-import { SET_CURRENT_USER_ID, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../actions/types';
 import isEmpty from 'lodash/isEmpty';
+import {
+  SET_CURRENT_USER_ID, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
+} from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
@@ -9,23 +11,23 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SET_CURRENT_USER_ID: {
       return {
-        ...state, 
-        isAuthenticated: !isEmpty({user_id: action.user_id}),
+        ...state,
+        isAuthenticated: !isEmpty({ user_id: action.user_id }),
         user_id: action.user_id,
         loggingIn: false,
       };
     }
     case LOGIN_REQUEST: {
       return {
-        ...state, 
+        ...state,
         loggingIn: true,
       };
     }
     case LOGIN_SUCCESS: {
-      return { 
+      return {
         isAuthenticated: true,
         user_id: action.user_id,
         loggingIn: false,

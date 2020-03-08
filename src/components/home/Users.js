@@ -12,7 +12,7 @@ class Users extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (localStorage.jwtToken) {
       const is_privileged = jwtDecode(localStorage.jwtToken).is_privileged;
       const { alert_error } = this.props;

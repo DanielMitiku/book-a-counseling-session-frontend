@@ -1,15 +1,17 @@
-import { DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE, GET_USERS_FAILURE, GET_USERS_SUCCESS, GET_USERS_REQUEST, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS } from '../actions/types';
+import {
+  DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE, GET_USERS_FAILURE, GET_USERS_SUCCESS, GET_USERS_REQUEST, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS,
+} from '../actions/types';
 
 const initialState = {
   requesting: false,
   users: [],
   user: {},
-}
+};
 
 const userReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case GET_USERS_REQUEST: {
-      return { 
+      return {
         requesting: true,
         users: [],
       };
@@ -17,17 +19,17 @@ const userReducer = (state = initialState, action) => {
     case GET_USERS_SUCCESS: {
       return {
         requesting: false,
-        users: [...action.payload]
+        users: [...action.payload],
       };
     }
     case GET_USERS_FAILURE: {
       return {
-        ...state, 
+        ...state,
         requesting: false,
       };
     }
     case GET_USER_REQUEST: {
-      return { 
+      return {
         requesting: true,
         users: [],
         user: {},
@@ -42,12 +44,12 @@ const userReducer = (state = initialState, action) => {
     }
     case GET_USER_FAILURE: {
       return {
-        ...state, 
+        ...state,
         requesting: false,
       };
     }
     case DELETE_USER_REQUEST: {
-      return { 
+      return {
         ...state,
         requesting: true,
       };
@@ -59,7 +61,7 @@ const userReducer = (state = initialState, action) => {
       };
     }
     case DELETE_USER_FAILURE: {
-      return { 
+      return {
         ...state,
         requesting: false,
       };

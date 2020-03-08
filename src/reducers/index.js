@@ -6,4 +6,6 @@ import sessionReducer from './sessionReducer';
 import appointmentReducer from './appointmentReducer';
 import userReducer from './userReducer';
 
-export default combineReducers({auth: authReducer, alert: alertReducer, signup: signupReducer, session: sessionReducer, appointment: appointmentReducer, user: userReducer});
+export default combineReducers({
+  auth: authReducer, alert: alertReducer, signup: signupReducer, session: sessionReducer, appointment: appointmentReducer, user: userReducer,
+});

@@ -1,15 +1,17 @@
-import { GET_SESSION_REQUEST, GET_SESSION_SUCCESS, GET_SESSION_FAILURE, CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DELETE_SESSION_REQUEST, DELETE_SESSION_SUCCESS, DELETE_SESSION_FAILURE, GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST } from '../actions/types';
+import {
+  GET_SESSION_REQUEST, GET_SESSION_SUCCESS, GET_SESSION_FAILURE, CREATE_SESSION_REQUEST, CREATE_SESSION_SUCCESS, CREATE_SESSION_FAILURE, DELETE_SESSION_REQUEST, DELETE_SESSION_SUCCESS, DELETE_SESSION_FAILURE, GET_SESSIONS_FAILURE, GET_SESSIONS_SUCCESS, GET_SESSIONS_REQUEST,
+} from '../actions/types';
 
 const initialState = {
   requesting: false,
   sessions: [],
   session: {},
-}
+};
 
 const sessionReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case GET_SESSIONS_REQUEST: {
-      return { 
+      return {
         requesting: true,
         sessions: [],
       };
@@ -17,18 +19,18 @@ const sessionReducer = (state = initialState, action) => {
     case GET_SESSIONS_SUCCESS: {
       return {
         requesting: false,
-        sessions: [...action.payload]
+        sessions: [...action.payload],
       };
     }
     case GET_SESSIONS_FAILURE: {
       return {
-        ...state, 
+        ...state,
         requesting: false,
       };
     }
     case GET_SESSION_REQUEST: {
       return {
-        ...state, 
+        ...state,
         requesting: true,
         session: {},
       };
@@ -37,17 +39,17 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         requesting: false,
-        session: action.payload
+        session: action.payload,
       };
     }
     case GET_SESSION_FAILURE: {
       return {
-        ...state, 
+        ...state,
         requesting: false,
       };
     }
     case CREATE_SESSION_REQUEST: {
-      return { 
+      return {
         ...state,
         requesting: true,
       };
@@ -59,13 +61,13 @@ const sessionReducer = (state = initialState, action) => {
       };
     }
     case CREATE_SESSION_FAILURE: {
-      return { 
+      return {
         ...state,
         requesting: false,
       };
     }
     case DELETE_SESSION_REQUEST: {
-      return { 
+      return {
         ...state,
         requesting: true,
       };
@@ -77,7 +79,7 @@ const sessionReducer = (state = initialState, action) => {
       };
     }
     case DELETE_SESSION_FAILURE: {
-      return { 
+      return {
         ...state,
         requesting: false,
       };
