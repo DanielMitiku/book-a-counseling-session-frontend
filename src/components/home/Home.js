@@ -22,7 +22,9 @@ const Home = props => {
         <img className="card-img-top" src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80" alt="A man seeking peace" />
         <div className="card-body">
           <h5 className="card-title">
-            Do you need {' '}
+            Do you need
+            {' '}
+            {' '}
             <span className="peace">Peace</span>
             {' '}
             in this world of chaos?

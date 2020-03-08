@@ -32,9 +32,18 @@ const Sidebar = props => {
 
   const adminLink = (
     <ul className="nav flex-column">
-      <Link to="/users" className={`side-bar-item py-3 px-5 ${currentUrl === '/users' ? 'side-bar-active' : ''}`}>Users<small className="text-muted" style={{fontSize: "10px"}}> admin</small></Link>
-      <Link to="/all_appointments" className={`side-bar-item py-3 px-5 ${currentUrl === '/all_appointments' ? 'side-bar-active' : ''}`}>All Sessions<small className="text-muted" style={{fontSize: "10px"}}> admin</small></Link>
-      <Link to="/counselings" className={`side-bar-item py-3 px-5 ${currentUrl === '/counselings' ? 'side-bar-active' : ''}`}>Counselings<small className="text-muted" style={{fontSize: "10px"}}> admin</small></Link>
+      <Link to="/users" className={`side-bar-item py-3 px-5 ${currentUrl === '/users' ? 'side-bar-active' : ''}`}>
+        Users
+        <small className="text-muted" style={{ fontSize: '10px' }}> admin</small>
+      </Link>
+      <Link to="/all_appointments" className={`side-bar-item py-3 px-5 ${currentUrl === '/all_appointments' ? 'side-bar-active' : ''}`}>
+        All Sessions
+        <small className="text-muted" style={{ fontSize: '10px' }}> admin</small>
+      </Link>
+      <Link to="/counselings" className={`side-bar-item py-3 px-5 ${currentUrl === '/counselings' ? 'side-bar-active' : ''}`}>
+        Counselings
+        <small className="text-muted" style={{ fontSize: '10px' }}> admin</small>
+      </Link>
     </ul>
   );
 
