@@ -37,7 +37,7 @@ const Sidebar = props => {
         <small className="text-muted" style={{ fontSize: '10px' }}> admin</small>
       </Link>
       <Link to="/all_appointments" className={`side-bar-item py-3 px-5 ${currentUrl === '/all_appointments' ? 'side-bar-active' : ''}`}>
-        All Sessions
+        All Booked
         <small className="text-muted" style={{ fontSize: '10px' }}> admin</small>
       </Link>
       <Link to="/counselings" className={`side-bar-item py-3 px-5 ${currentUrl === '/counselings' ? 'side-bar-active' : ''}`}>
