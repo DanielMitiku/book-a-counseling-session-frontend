@@ -19,7 +19,23 @@
 
 ## Get Started 
 
-*Clone the repo to your local machine*
+*First Clone the backend repo to your local machine. Full instructions can be found by visiting the [repo](https://github.com/DanielMitiku/book-a-counseling-session-backend.git)*
+```bash
+    git clone https://github.com/DanielMitiku/book-a-counseling-session-backend.git
+    cd book-a-counseling-session-backend
+```
+- Please install Postgres db in your computer and add the appropriate config to the *config/database.yml* file
+
+*Install `gems` packages, migrate database and start development server*
+
+```bash
+    bundle install
+    rails db:create
+    rails db:migrate
+    rails s
+```
+
+*Clone the frontend repo to your local machine*
 ```bash
     git clone https://github.com/DanielMitiku/book-a-counseling-session-frontend.git
     cd book-a-counseling-session-frontend

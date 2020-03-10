@@ -21,7 +21,7 @@ const loginUser = userData => dispatch => {
       dispatch(setCurrentUserId(user_id));
       dispatch(loginSuccess(user_id, is_privileged));
       dispatch(alert_success('Login Successful!'));
-      history.push('/');
+      history.push('/sessions');
     })
     .catch(error => {
       dispatch(alert_error('Login Error'));
