@@ -1,5 +1,5 @@
 # Book a Counseling Session Frontend
-> The app is about booking a counseling session with an experts in many fields. This is the front-end of an app made using react and redux. The front-end will contact the back-end rails app using Rest APIs. The back-end of can be found [here](https://github.com/DanielMitiku/book-a-counseling-session-backend.git). 
+> The app is about booking a counseling session with experts in many fields. This is the front-end of an app made using react and redux. The front-end will contact the back-end rails app using Rest APIs. The back-end of can be found [here](https://github.com/DanielMitiku/book-a-counseling-session-backend.git). 
 
 
 ## Built with
