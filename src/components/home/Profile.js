@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { getUser } from '../../actions/userAction';
+import Loading from '../shared/Loading';
+
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -14,21 +16,16 @@ class Profile extends React.Component {
 
   render() {
     const { user } = this.props;
-    const loading = (
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border text-primary" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    );
+    const loading = <Loading />;
+
     return (
       <div className="main-bar bar">
         <h3 className="text-center">Your Profile</h3>
         { user.requesting && loading}
         {user.user
         && (
-        <div className="col-md-4 offset-3">
-          <div className="card text-center mx-4 my-4" style={{ width: '25rem' }}>
+        <div>
+          <div className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{ width: '25rem' }}>
             <div className="card-body">
               <h5 className="card-title">
                 {user.user.first_name}
