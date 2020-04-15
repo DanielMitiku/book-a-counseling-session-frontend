@@ -24,7 +24,7 @@ class App extends React.Component {
         <div className="col-md-2">
           <Sidebar />
         </div>
-        <div className="col-md-9 offset-2 mt-3">
+        <div className="col-md-10 col-12 mt-3">
           <Flash />
           <Switch>
             <Route path="/" exact component={Home} />
