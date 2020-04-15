@@ -32,15 +32,10 @@ code {
 
 .side-bar {
   height: 100%; 
-  position: fixed;
-  z-index: 1; 
-  /* background-color: rgb(212, 214, 192);  */
-  overflow-x: hidden; 
 }
 
 .side-bar-body {
   margin-top: 30px;
-  margin-left: 5px;
 }
 
 .side-bar-item {
