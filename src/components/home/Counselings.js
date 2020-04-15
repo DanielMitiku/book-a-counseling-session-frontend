@@ -5,6 +5,8 @@ import jwtDecode from 'jwt-decode';
 import { alert_error } from '../../actions/alertAction';
 import history from '../../utils/history';
 import isEmpty from 'lodash/isEmpty';
+import Loading from '../shared/Loading';
+
 
 class Counselings extends React.Component {
   constructor(props) {
@@ -88,11 +90,8 @@ class Counselings extends React.Component {
   render() {
     const { session } = this.props;
     const { name, description, image_url, buttonClicked, errors } = this.state;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+
     const createSessionForm = (
       <div className="col-md-5 mt-3 ml-4 create-session-form">
       <form onSubmit={this.handleSubmit}>
@@ -119,7 +118,7 @@ class Counselings extends React.Component {
       </div>
     );
     return (
-      <div className='main-bar bar'>
+      <div className='main-bar bar text-center'>
         <h3 className='text-center'>Sessions List</h3>
         {session.requesting && loading}
         <button type="button" className="ml-4 btn btn-info" onClick={this.buttonClickedHandler}>Create Session</button>
@@ -127,8 +126,8 @@ class Counselings extends React.Component {
         <div className='row'>
         { session.sessions && session.sessions.map(s => {
           return (
-            <div key={s.id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-              <img className="card-img-top" height="300" src={s.image_url} alt="Counseling Session" />
+            <div key={s.id} className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{width: '25rem'}}>
+              <img className="card-img-top" src={s.image_url} alt="Counseling Session" />
               <div className="card-body">
                 <h5 className="card-title">{s.name}</h5>
                 <p className="card-text">{s.description}</p>

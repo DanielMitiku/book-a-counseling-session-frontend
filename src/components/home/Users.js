@@ -4,6 +4,7 @@ import { getUsers, deleteUser } from '../../actions/userAction';
 import { alert_error } from '../../actions/alertAction';
 import history from '../../utils/history';
 import jwtDecode from 'jwt-decode';
+import Loading from '../shared/Loading';
 
 
 class Users extends React.Component {
@@ -35,11 +36,8 @@ class Users extends React.Component {
 
   render() {
     const { user } = this.props;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+    
     return (
       <div className='main-bar bar'>
   <h3 className='text-center'>User List<small className="text-muted"> {user.users.length} users total</small></h3>
@@ -47,7 +45,7 @@ class Users extends React.Component {
         <div className='row'>
         { user.users && user.users.map(u => {
           return (
-            <div key={u.id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
+            <div key={u.id} className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{width: '25rem'}}>
               <div className="card-body">
                 <h5 className="card-title">{u.first_name} {u.last_name}</h5>
                 <p className="card-text">{u.email}</p>

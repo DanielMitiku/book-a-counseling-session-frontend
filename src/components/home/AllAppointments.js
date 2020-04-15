@@ -4,6 +4,7 @@ import { getAllAppointments, deleteAppointment } from '../../actions/appointment
 import jwtDecode from 'jwt-decode';
 import { alert_error } from '../../actions/alertAction';
 import history from '../../utils/history';
+import Loading from '../shared/Loading';
 
 
 class AllAppointments extends React.Component {
@@ -37,11 +38,8 @@ class AllAppointments extends React.Component {
 
   render() {
     const { appointment } = this.props;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+
     return (
       <div className='main-bar bar'>
         <h3 className='text-center'>All Appointments Booked by Users</h3>
@@ -50,8 +48,8 @@ class AllAppointments extends React.Component {
           <div className='row'>
           { appointment.all_appointments && appointment.all_appointments.map(a => {
             return (
-              <div key={a.appointment_id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-                <img className="card-img-top" height="300" src={a.counseling_img} alt="Counseling Session" />
+              <div key={a.appointment_id} className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{width: '25rem'}}>
+                <img className="card-img-top" src={a.counseling_img} alt="Counseling Session" />
                 <div className="card-body">
                   <h5 className="card-title">{a.appointment_date}</h5>
                   <p className="card-text">Counseling Title: {a.counseling_name}</p>
