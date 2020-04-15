@@ -3,6 +3,8 @@ import { createAppointment } from '../../actions/appointmentAction';
 import { getSession } from '../../actions/sessionAction';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
+import Loading from '../shared/Loading';
+
 
 
 class Book extends React.Component {
@@ -58,17 +60,14 @@ class Book extends React.Component {
     const { session } = this.props;
     const { datetime, errors } = this.state;
     const { requesting } = this.props.session;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+
     return (
-      <div className='main main-bar bar'>
+      <div className='main-bar bar text-center'>
         <h3> Please choose date and time </h3>
         { requesting && loading }
-        { session.session && <div className="card mx-auto col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
-          <img className="card-img-top" height="300" src={session.session.image_url} alt="Counseling Session" />
+        { session.session && <div className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{width: '25rem'}}>
+          <img className="card-img-top" src={session.session.image_url} alt="Counseling Session" />
           <div className="card-body">
             <h5 className="card-title">{session.session.name}</h5>
             <p className="card-text">{session.session.description}</p>

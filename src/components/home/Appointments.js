@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAppointments, deleteAppointment } from '../../actions/appointmentAction';
 import jwtDecode from 'jwt-decode';
+import Loading from '../shared/Loading';
+
 
 
 class Appointments extends React.Component {
@@ -26,11 +28,8 @@ class Appointments extends React.Component {
 
   render() {
     const { appointment } = this.props;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+
     return (
       <div className='main-bar bar'>
         <h3 className='text-center'>Here are your Appointments</h3>
@@ -39,7 +38,7 @@ class Appointments extends React.Component {
           <div className='row'>
           { appointment.appointments && appointment.appointments.map(a => {
             return (
-              <div key={a.appointment_id} className="card col-md-5 text-center mx-4 my-4" style={{width: '25rem'}}>
+              <div key={a.appointment_id} className="card col-sm-6 col-12 text-center mx-auto px-2 my-4" style={{width: '25rem'}}>
                 <div className="card-body">
                   <h5 className="card-title">{a.appointment_date}</h5>
                   <p className="card-text">Counseling Title: {a.counseling_name}</p>

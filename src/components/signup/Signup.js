@@ -2,6 +2,8 @@ import React from 'react'
 import isEmpty from 'lodash/isEmpty';
 import { signupUser } from '../../actions/signupAction';
 import { connect } from 'react-redux';
+import Loading from '../shared/Loading';
+
 
 class Signup extends React.Component {
   constructor(props) {
@@ -66,14 +68,11 @@ class Signup extends React.Component {
 
   render() {
     const { signingIn } = this.props.signup;
-    const loading = (<div className="d-flex justify-content-center">
-                      <div className="spinner-border text-primary" role="status">
-                       <span className="sr-only">Loading...</span>
-                      </div>
-                    </div>);
+    const loading = <Loading />;
+
     const { first_name, last_name, email, password, password_confirmation, errors } = this.state;
     return (
-      <div className="col-md-4 mt-2 offset-4">
+      <div className="col-md-4 col-8 my-4 mx-auto">
         <h2 className="main">Sign Up</h2>
         { signingIn && loading }
         <form onSubmit={this.handleSubmit}>
