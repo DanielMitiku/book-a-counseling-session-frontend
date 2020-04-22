@@ -52,16 +52,26 @@
 
 Open http://localhost:3000 in your browser.
 
-## Author
+## Current Features
 
-- Github: [Daniel Mitiku](https://github.com/DanielMitiku)
-- LinkedIn: [@daniel-wesego](https://www.linkedin.com/in/daniel-wesego/)
-- Email: wedanielmitiku@gmail.com
+- Authentication using JWT
+- Users can book appontments
+- Users can see their scheduled appontments
+- Users can delete their scheduled appointments
+- Admins can add/remove the sessions users will book
+- Admins can delete the appointments users booked
+- Admins can remove users ...
 
 ## Features you can add
 
 - Update the UX and UI for better experience
 - making each user have its own timezone ...
+
+## Author
+
+- Github: [Daniel Mitiku](https://github.com/DanielMitiku)
+- LinkedIn: [@daniel-wesego](https://www.linkedin.com/in/daniel-wesego/)
+- Email: wedanielmitiku@gmail.com
 
 ## 🤝 Contributing
 
